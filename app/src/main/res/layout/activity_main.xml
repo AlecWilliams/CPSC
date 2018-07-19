@@ -9,17 +9,40 @@
 
 
     <FrameLayout
+        android:id="@+id/main_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/edit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="300dp"
-            android:text="Edit" />
+        android:layout_height="match_parent"
+        android:elevation="5dp">
     </FrameLayout>
+
+    <ImageView
+        android:id="@+id/edit_button"
+        android:src="@drawable/plus"
+        android:tint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="5dp"
+        android:text="Edit" />
+
+    <ImageView
+        android:id="@+id/edit_button2"
+        android:src="@drawable/plus"
+        android:tint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@id/edit_button"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:elevation="5dp"
+        android:text="Edit" />
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/message_recycler_view"

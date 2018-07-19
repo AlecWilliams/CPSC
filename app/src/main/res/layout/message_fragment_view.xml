@@ -2,58 +2,184 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="120dp">
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:background="#FFF"
+    >
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="0dp"
-        android:alpha="50"
-        android:background="#66000000"
-        />
 
     <ImageView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:src="@android:drawable/divider_horizontal_dark"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:scaleType="fitXY"
+        android:paddingBottom="2dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:paddingBottom="2dp"
-        android:paddingTop="2dp" />
+        android:paddingTop="2dp"
+        android:scaleType="fitXY"
+        android:src="@android:drawable/divider_horizontal_dark" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        >
+
+        <ImageView
+            android:id="@+id/location_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/firestone" />
+
+
+        <ImageView
+            android:id="@+id/location_image2"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            app:srcCompat="@drawable/firestone" />
+
+        <LinearLayout
+            android:id="@+id/edit_layout_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/location_image2"
+            android:layout_marginLeft="10dp"
+            android:visibility="gone"
+
+            >
+
+
+            <EditText
+                android:id="@+id/edit_perk_name"
+                android:hint="Name"
+                android:padding="7dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:background="@drawable/edit_text_background"
+                />
+
+            <EditText
+                android:id="@+id/edit_perk_info"
+                android:hint="perk info"
+                android:padding="7dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:background="@drawable/edit_text_background"
+                />
+
+            <EditText
+                android:id="@+id/edit_perk_address"
+                android:hint="location or address"
+                android:padding="7dp"
+                android:textColor="#000"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    >
+
+                    <ImageView
+                        android:id="@+id/cancel_edit"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="5dp"
+                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                    <ImageView
+                        android:id="@+id/save_edit"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="5dp"
+                        app:srcCompat="@android:drawable/ic_menu_save" />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/perkInfoHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/location_image"
+            android:orientation="vertical"
+
+            >
+
+            <TextView
+                android:id="@+id/perk_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Firestone"
+                android:textColor="#008489"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/perk_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/perk_name"
+                android:text="20% off all beers"
+                android:textColor="#232323"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/perk_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/perk_description"
+                android:text="80 Main Street, San Luis Obispo"
+                android:textColor="#767676"
+                android:textSize="16dp" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <ImageView
-        android:id="@+id/location_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        app:srcCompat="@drawable/googleg_standard_color_18" />
+        android:id="@+id/delete_perk"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+    <ImageView
+        android:id="@+id/edit_perk"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_toLeftOf="@+id/delete_perk"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 
-    <TextView
-        android:id="@+id/message_bubble"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="20dp"
-        android:text="Default Text"
-        android:textSize="20dp"
-        android:textColor="#fff" />
-
-    <TextView
-        android:id="@+id/message_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="45dp"
-        android:text="Default Info on place"
-        android:textColor="#fff"
-        android:textSize="20dp" />
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="14dp"
         android:background="@android:color/black"/>
 
 </RelativeLayout>
