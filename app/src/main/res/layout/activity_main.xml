@@ -4,8 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context="net.jsaistudios.cpsc.cpsc.MainActivity">
+    android:background="#fff"
+    tools:context="net.jsaistudios.cpsc.cpsc.MainActivity"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    >
 
 
     <FrameLayout
@@ -48,7 +51,8 @@
         android:id="@+id/message_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
+        android:clipChildren="false"
+        android:clipToPadding="false"
     </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

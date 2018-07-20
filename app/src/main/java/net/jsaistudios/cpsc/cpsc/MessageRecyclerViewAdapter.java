@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
+import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.List;
 
@@ -94,16 +95,19 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             myEditCancel = itemView.findViewById(R.id.cancel_edit);
 
 
+            final FoldingCell fc = (FoldingCell) itemView.findViewById(R.id.folding_cell);
+
             //Edit Perk Button Listener
             myEditButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ViewGroup.LayoutParams params = myEditButton.getLayoutParams();
-                    myEditButton.setLayoutParams(params);
+
+
+                    fc.toggle(false);
 
                     editPerkName.setText(myTextView.getText());
                     editPerkInfo.setText(myLocationInfo.getText());
-
+/**
                     editLayout.setVisibility(View.VISIBLE);
                     perksLayout.setVisibility(View.GONE);
                     myPerkImage.setVisibility(View.GONE);
@@ -111,10 +115,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
                     myEditImage.setVisibility(View.VISIBLE);
 
                     myEditButton.setVisibility(View.GONE);
-                    RelativeLayout.LayoutParams editImageParams = (RelativeLayout.LayoutParams) myPerkImage.getLayoutParams();
-
-
-
+**/
                 }
             });
 

@@ -3,9 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
-    android:background="#FFF"
+    android:background="@drawable/card_background"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:elevation="7dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     >
 
 
@@ -22,16 +26,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         >
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/location_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="10dp"
-            app:srcCompat="@drawable/firestone" />
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="8dp"
+            android:src="@drawable/fireston_img" />
 
 
         <ImageView
@@ -43,143 +50,196 @@
             android:layout_marginLeft="10dp"
             app:srcCompat="@drawable/firestone" />
 
-        <LinearLayout
-            android:id="@+id/edit_layout_holder"
+
+
+
+
+        <com.ramotion.foldingcell.FoldingCell
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/folding_cell"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@+id/location_image2"
-            android:layout_marginLeft="10dp"
-            android:visibility="gone"
-
-            >
+            android:layout_height="wrap_content">
+            ​
 
 
-            <EditText
-                android:id="@+id/edit_perk_name"
-                android:hint="Name"
-                android:padding="7dp"
-                android:layout_marginBottom="10dp"
+            <LinearLayout
+                android:id="@+id/edit_layout_holder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:background="@drawable/edit_text_background"
-                />
+                android:orientation="vertical"
+                android:layout_below="@+id/location_image2"
+                android:layout_marginLeft="10dp"
+                android:visibility="gone"
+                android:gravity="center_horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                >
 
-            <EditText
-                android:id="@+id/edit_perk_info"
-                android:hint="perk info"
-                android:padding="7dp"
-                android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#000"
-                android:background="@drawable/edit_text_background"
-                />
 
-            <EditText
-                android:id="@+id/edit_perk_address"
-                android:hint="location or address"
-                android:padding="7dp"
-                android:textColor="#000"
-                android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_background"
-                />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    >
+                    android:text="Location Name"
+                    android:textSize="16sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    />
+                <EditText
+                    android:id="@+id/edit_perk_name"
+                    android:hint="McDonald's"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="9dp"
+                    android:paddingTop="9dp"
+                    android:background="@drawable/edit_text_background"
+                    />
 
-                    <ImageView
-                        android:id="@+id/cancel_edit"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginRight="5dp"
-                        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Perk  Description"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
+                    />
 
-                    <ImageView
-                        android:id="@+id/save_edit"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
-                        android:layout_marginLeft="5dp"
-                        app:srcCompat="@android:drawable/ic_menu_save" />
-                </LinearLayout>
-            </RelativeLayout>
+                <EditText
+                    android:id="@+id/edit_perk_info"
+                    android:hint="20% off burgers"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="9dp"
+                    android:paddingTop="9dp"
+                    android:background="@drawable/edit_text_background"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="10dp"
+                    />
+                <EditText
+                    android:id="@+id/edit_perk_address"
+                    android:hint="123 Sesame Street"
+                    android:textColor="#000"
+                    android:textSize="16sp"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="9dp"
+                    android:paddingTop="9dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        >
+
+                        <ImageView
+                            android:id="@+id/cancel_edit"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginRight="5dp"
+                            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <ImageView
+                            android:id="@+id/save_edit"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_marginLeft="5dp"
+                            app:srcCompat="@android:drawable/ic_menu_save" />
+                    </LinearLayout>
+                </RelativeLayout>
 
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/perkInfoHolder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/location_image"
-            android:orientation="vertical"
-
-            >
-
-            <TextView
-                android:id="@+id/perk_name"
+            <LinearLayout
+                android:id="@+id/perkInfoHolder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Firestone"
-                android:textColor="#008489"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="80dp"
+                android:layout_toRightOf="@+id/location_image"
+                android:orientation="vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+
+                >
+
+                <TextView
+                    android:id="@+id/perk_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Firestone"
+                    android:textColor="#008489"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
 
-            <TextView
-                android:id="@+id/perk_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/perk_name"
-                android:text="20% off all beers"
-                android:textColor="#232323"
-                android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/perk_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/perk_name"
+                    android:text="20% off all beers"
+                    android:textColor="#232323"
+                    android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/perk_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/perk_description"
-                android:text="80 Main Street, San Luis Obispo"
-                android:textColor="#767676"
-                android:textSize="16dp" />
+                <TextView
+                    android:id="@+id/perk_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/perk_description"
+                    android:text="80 Main Street"
+                    android:textColor="#767676"
+                    android:textSize="16dp"
+                    android:visibility="gone"
+                    />
 
 
-        </LinearLayout>
+            </LinearLayout>
+        </com.ramotion.foldingcell.FoldingCell>
 
+
+        <ImageView
+            android:id="@+id/delete_perk"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/delete"
+            android:tint="@color/gray0.5"
+            />
+        <ImageView
+            android:id="@+id/edit_perk"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/delete_perk"
+            app:srcCompat="@drawable/edit"
+            android:tint="@color/gray0.5"
+            />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/delete_perk"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentRight="true"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
-    <ImageView
-        android:id="@+id/edit_perk"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_toLeftOf="@+id/delete_perk"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="14dp"
-        android:background="@android:color/black"/>
+
+
 
 </RelativeLayout>

@@ -32,6 +32,9 @@ dependencies {
     compile 'com.google.firebase:firebase-database:11.8.0'
     compile 'com.google.firebase:firebase-core:11.8.0'
     compile 'com.google.firebase:firebase-auth:11.8.0'
+    compile 'com.ramotion.foldingcell:folding-cell:1.2.2'
+    compile 'de.hdodenhof:circleimageview:2.2.0'
+
 
 
     testImplementation 'junit:junit:4.12'
