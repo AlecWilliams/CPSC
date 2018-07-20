@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,12 +14,15 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alexvasilkov.foldablelayout.UnfoldableView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -53,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     DatabaseReference myRef;
+    View mListTouchInterceptor;
+    FrameLayout mDetailsLayout;
+    UnfoldableView mUnfoldableView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,16 +119,26 @@ public class MainActivity extends AppCompatActivity {
 
                 Iterable<DataSnapshot> iterable = dataSnapshot.getChildren();
                 s.clear();
-
+                int i=0;
                 while(iterable.iterator().hasNext()){
                     PerkModel pm = new PerkModel();
                     DataSnapshot child = iterable.iterator().next();
                     pm.setPerkDatabaseNode(child);
                     pm.setName(child.child("name").getValue(String.class));
                     pm.setInfo(child.child("info").getValue(String.class));
-
+                    if(i==0){
+                        pm.setImage(R.drawable.fireston_img);
+                    } else if(i==1){
+                        pm.setImage(R.drawable.bulls);
+                    } else if(i==2) {
+                        pm.setImage(R.drawable.fireston_img);
+                    } else if(i==4) {
+                        pm.setImage(R.drawable.slobrew);
+                    } else {
+                        pm.setImage(R.drawable.fireston_img);
+                    }
                     s.add(pm);
-
+                    i++;
 
                 }
 
@@ -142,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 // Failed to read value
             }
         });
+
 
     }
 

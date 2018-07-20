@@ -1,6 +1,9 @@
 package net.jsaistudios.cpsc.cpsc;
 
+import android.animation.ValueAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,6 +53,9 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         holder.myLocationInfo.setText(mData.get(position).getInfo());
         holder.myTextView.setText(animal);
         holder.myDatabaseRef = mData.get(position).getPerkDatabaseNode();
+        holder.myPerkImage.setImageResource(mData.get(position).getImage());
+        holder.myEditImage.setImageResource(mData.get(position).getImage());
+
     }
 
     // binds the data to the TextView in each row
@@ -67,12 +73,13 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         TextView myLocationInfo;
         ImageView myDeleteButton;
         DataSnapshot myDatabaseRef;
-        ImageView myEditButton;
-        EditText editPerkName, editPerkInfo, editPerkAddress;
+        EditText editPerkName, editPerkInfo;
         LinearLayout editLayout;
-        LinearLayout perksLayout;
-        ImageView myPerkImage;
-        ImageView myEditImage, myEditSave, myEditCancel;
+        RelativeLayout perksLayout;
+        ImageView myPerkImage, myEditButton;
+        ImageView myEditImage;
+        TextView myEditSave, myEditCancel;
+        View fragRoot;
 
 
         ViewHolder(final View itemView) {
@@ -80,11 +87,11 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             myTextView = itemView.findViewById(R.id.perk_name);
             myLocationInfo = itemView.findViewById(R.id.perk_description);
             myDeleteButton = itemView.findViewById(R.id.delete_perk);
-            myEditButton = itemView.findViewById(R.id.edit_perk);
+            myEditButton = itemView.findViewById(R.id.edit_button);
+            fragRoot = itemView.getRootView();
 
             editPerkName = itemView.findViewById(R.id.edit_perk_name);
             editPerkInfo = itemView.findViewById(R.id.edit_perk_info);
-            editPerkAddress = itemView.findViewById(R.id.edit_perk_address);
             editLayout = itemView.findViewById(R.id.edit_layout_holder);
 
             perksLayout = itemView.findViewById(R.id.perkInfoHolder);
@@ -95,46 +102,63 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             myEditCancel = itemView.findViewById(R.id.cancel_edit);
 
 
-            final FoldingCell fc = (FoldingCell) itemView.findViewById(R.id.folding_cell);
 
-            //Edit Perk Button Listener
+
+//            //Edit Perk Button Listener
             myEditButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    final int dur = 500;
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                        perksLayout.animate().alpha(0).setDuration(dur).withEndAction(new Runnable() {
+                            @SuppressLint("NewApi")
+                            @Override
+                            public void run() {
+                                myPerkImage.setVisibility(View.GONE);
+                                editLayout.setAlpha(0);
+                                myEditImage.setAlpha(0);
+                                editLayout.animate().alpha(1).setDuration(dur);
+                                editLayout.setVisibility(View.VISIBLE);
+                                myEditImage.setVisibility(View.VISIBLE);
+                                myEditImage.animate().alpha(1).setDuration(dur);
+                                perksLayout.setVisibility(View.GONE);
+
+                            }
+                        });
+                        myPerkImage.animate().alpha(0).setDuration(dur);
 
 
-                    fc.toggle(false);
 
-                    editPerkName.setText(myTextView.getText());
-                    editPerkInfo.setText(myLocationInfo.getText());
-/**
-                    editLayout.setVisibility(View.VISIBLE);
-                    perksLayout.setVisibility(View.GONE);
-                    myPerkImage.setVisibility(View.GONE);
-                    //myEditImage.setAlpha(0);
-                    myEditImage.setVisibility(View.VISIBLE);
+                        editPerkName.setText(myTextView.getText());
+                        editPerkInfo.setText(myLocationInfo.getText());
 
-                    myEditButton.setVisibility(View.GONE);
-**/
+
+                        myEditButton.setVisibility(View.GONE);
+                        fragRoot.animate().scaleY(1);
+                        perksLayout.setVisibility(View.VISIBLE);
+                        editLayout.setVisibility(View.VISIBLE);
+                        editLayout.setVisibility(View.GONE);
+
+                    }
+
                 }
             });
-
-            //Cancel Edit
+            if(myEditCancel!=null)
             myEditCancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //Make edit layout gone
                     editLayout.setVisibility(View.GONE);
-                    myEditImage.setVisibility(View.GONE);
+                    myEditImage.setVisibility(View.VISIBLE);
                     //Make default perk info visible
                     myPerkImage.setVisibility(View.VISIBLE);
                     perksLayout.setVisibility(View.VISIBLE);
-                    myEditButton.setVisibility(View.VISIBLE);
+                    myPerkImage.setAlpha(1);
+                    perksLayout.setAlpha(1);
                  }
             });
-
-            //Save Edit
-            myEditSave.setOnClickListener(new View.OnClickListener() {
+            if(myEditSave!=null)
+                myEditSave.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     //Save changes to database
@@ -148,7 +172,6 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
                     //Make default perk info visible
                     myPerkImage.setVisibility(View.VISIBLE);
                     perksLayout.setVisibility(View.VISIBLE);
-                    myEditButton.setVisibility(View.VISIBLE);
 
                 }
             });
@@ -170,6 +193,22 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         }
 
     }
+// todo doesdnt work
+//    private static void animateHeight(final View view, float begin, float end, int mdur){
+//        ValueAnimator va = ValueAnimator.ofFloat(begin, end);
+//        va.setDuration(mdur);
+//        ViewGroup.LayoutParams params = view.getLayoutParams();
+//        params.height = (int)begin;
+//        view.setLayoutParams(params);
+//        va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                ViewGroup.LayoutParams params = view.getLayoutParams();
+//                params.height = (int)((float)animation.getAnimatedValue()*params.height);
+//                view.setLayoutParams(params);
+//            }
+//        });
+//        va.start();
+//    }
 
     // convenience method for getting data at click position
 

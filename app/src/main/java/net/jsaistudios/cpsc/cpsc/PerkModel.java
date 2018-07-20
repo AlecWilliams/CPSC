@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 public class PerkModel {
     private String name;
     private String info;
+    private int image;
     private DataSnapshot perkDatabaseNode;
 
 
@@ -26,6 +27,14 @@ public class PerkModel {
 
     public void setPerkDatabaseNode(DataSnapshot perkDatabaseNode) {
         this.perkDatabaseNode = perkDatabaseNode;
+    }
+
+    public int getImage() {
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     public String getName() {
