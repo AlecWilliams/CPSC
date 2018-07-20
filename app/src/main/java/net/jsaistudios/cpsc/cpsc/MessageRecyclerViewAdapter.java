@@ -3,7 +3,13 @@ package net.jsaistudios.cpsc.cpsc;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,6 +62,21 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         holder.myPerkImage.setImageResource(mData.get(position).getImage());
         holder.myEditImage.setImageResource(mData.get(position).getImage());
 
+        Bitmap icon = BitmapFactory.decodeResource(holder.myPerkImage.getContext().getResources(),
+                mData.get(position).getImage());
+        ;
+
+//        Drawable drawable = (GradientDrawable) holder.myPerkImage.getContext().getResources().getDrawable(mData.get(position).getImage());
+//        if(drawable!=null)
+//            drawable.setStroke(2, getDominantColor(icon)); // set stroke width and stroke color
+
+    }
+
+    private static int getDominantColor(Bitmap bitmap) {
+        Bitmap newBitmap = Bitmap.createScaledBitmap(bitmap, 1, 1, true);
+        final int color = newBitmap.getPixel(0, 0);
+        newBitmap.recycle();
+        return color;
     }
 
     // binds the data to the TextView in each row
@@ -149,12 +170,12 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
                 public void onClick(View view) {
                     //Make edit layout gone
                     editLayout.setVisibility(View.GONE);
-                    myEditImage.setVisibility(View.VISIBLE);
-                    //Make default perk info visible
                     myPerkImage.setVisibility(View.VISIBLE);
+                    //Make default perk info visible
                     perksLayout.setVisibility(View.VISIBLE);
                     myPerkImage.setAlpha(1);
                     perksLayout.setAlpha(1);
+                    myEditButton.setVisibility(View.VISIBLE);
                  }
             });
             if(myEditSave!=null)

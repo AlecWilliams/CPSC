@@ -23,8 +23,18 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     compile 'com.android.support:support-annotations:27.1.1'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-
-
+    implementation ('com.mapbox.mapboxsdk:mapbox-android-sdk:6.2.0'){
+        transitive = true
+    }
+    implementation ('com.mapbox.mapboxsdk:mapbox-android-navigation:0.15.0'){
+        transitive = true
+    }
+    implementation ('com.mapbox.mapboxsdk:mapbox-sdk-services:3.3.0') {
+        transitive = true
+    }
+    implementation ('com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.15.0'){
+        transitive = true
+    }
     implementation 'com.google.firebase:firebase-core:11.8.0'
    // implementation 'com.google.firebase:firebase-firestore:17.0.2'
 
@@ -35,6 +45,8 @@ dependencies {
     compile 'com.ramotion.foldingcell:folding-cell:1.2.2'
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.alexvasilkov:foldable-layout:1.2.1'
+    compile 'com.sothree.slidinguppanel:library:3.3.1'
+
 
 
 

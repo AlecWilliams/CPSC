@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CPSC</string>
+    <string name="mapbox_key">pk.eyJ1IjoiaXNocGFuMiIsImEiOiJjamRlODk5MjIwOHh2MnlvbnN3bXc4ZGg3In0.a0A_wq80vlrstdRiosNNEg</string>
 </resources>

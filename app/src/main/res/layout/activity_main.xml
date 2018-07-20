@@ -66,17 +66,50 @@
 
 
 
+<com.sothree.slidinguppanel.SlidingUpPanelLayout
+    android:id="@+id/sliding_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:gravity="bottom"
+    android:clickable="false"
+    android:focusable="false"
+    android:layout_below="@id/my_toolbar"
+    app:umanoFadeColor="@android:color/transparent"
+    android:isScrollContainer="false"
+    app:umanoScrollableView="@id/scroller"
+    app:umanoPanelHeight="250dp"
+    app:umanoShadowHeight="10dp">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map_holder"></FrameLayout>
 
-
-
-
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/panelBg"
+        android:id="@+id/scroller">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/message_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:clipChildren="false"
-            android:layout_below="@id/my_toolbar"
+            android:layout_below="@id/map_holder"
+            android:layout_marginTop="15dp"
             android:clipToPadding="false">
         </android.support.v7.widget.RecyclerView>
+    </ScrollView>
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="We drink Budweiser responsibly"
+        android:elevation="3dp"
+        android:background="@color/panelBg"
+        android:layout_below="@id/my_toolbar"
+        android:visibility="gone"
+        android:padding="8dp"/>
 </RelativeLayout>

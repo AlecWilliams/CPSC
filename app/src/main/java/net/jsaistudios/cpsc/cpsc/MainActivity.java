@@ -36,6 +36,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -75,9 +77,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         places = new ArrayList<>();
         FirebaseApp.initializeApp(this);
+        SlidingUpPanelLayout slidingUpPanelLayout = findViewById(R.id.sliding_layout);
+        slidingUpPanelLayout.setAnchorPoint(0.6f);
+        slidingUpPanelLayout.setPanelState(SlidingUpPanelLayout.PanelState.ANCHORED);
 
         db = FirebaseDatabase.getInstance();
         myRef = db.getReference("perks");
+        createMapboxFragment(R.id.map_holder, "mapFrag");
 
         //Button Stuff
         final ImageView editButtom = findViewById(R.id.edit_button);
@@ -164,7 +170,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    private MapboxFragmentViewModel createMapboxFragment(int holder, String tag) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        MapboxFragmentViewModel fragment = new MapboxFragmentViewModel();
+        fragment.listener = new MapListener() {
+            @Override
+            public void locationUpdated(LatLng loc) {
+            }
+        };
+        fragment.mainContext = this;
+        fragmentTransaction.add(holder, fragment, tag);
+        fragmentTransaction.commitAllowingStateLoss();
+        return fragment;
+    }
 
 
 
